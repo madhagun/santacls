@@ -14,194 +14,299 @@
     		<artifactId>spring-boot-starter-parent</artifactId>
     		<version>2.0.1.RELEASE</version>
 	</parent>
-<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java.version>1.7</java.version>
-
-		<org.springframework.cloud-version>1.2.2.RELEASE</org.springframework.cloud-version>
-		<org.springframework-version>4.2.4.RELEASE</org.springframework-version>
-		<org.springframework.data-jpa-version>1.9.2.RELEASE</org.springframework.data-jpa-version>
-		<org.springframework.data-mongodb-version>1.8.2.RELEASE</org.springframework.data-mongodb-version>
-		<org.springframework.data-redis-version>1.6.2.RELEASE</org.springframework.data-redis-version>
-		<org.springframework.amqp-version>1.5.4.RELEASE</org.springframework.amqp-version>
-		
-		<org.thymeleaf.thymeleaf-spring4-version>2.1.4.RELEASE</org.thymeleaf.thymeleaf-spring4-version>
-		
-		<org.slf4j-version>1.7.21</org.slf4j-version>
-		
-		<com.sap.hana.cloud-version>1.0.4.RELEASE</com.sap.hana.cloud-version>
-	</properties>
-
-	<dependencies>
-
-		<!-- Spring -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-			<version>${org.springframework-version}</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>commons-logging</artifactId>
-					<groupId>commons-logging</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>${org.springframework-version}</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.springframework.data</groupId>
-		    <artifactId>spring-data-redis</artifactId>
-		    <version>${org.springframework.data-redis-version}</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.springframework.data</groupId>
-		    <artifactId>spring-data-mongodb</artifactId>
-		    <version>${org.springframework.data-mongodb-version}</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.springframework.amqp</groupId>
-		    <artifactId>spring-rabbit</artifactId>
-		    <version>${org.springframework.amqp-version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.thymeleaf</groupId>
-			<artifactId>thymeleaf-spring4</artifactId>
-			<version>${org.thymeleaf.thymeleaf-spring4-version}</version>
-		</dependency>
-
-		<!-- Servlet -->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
-			<scope>provided</scope>
-		</dependency>
-
-		<!-- CloudFoundry/Heroku -->
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-cloudfoundry-connector</artifactId>
-			<version>${org.springframework.cloud-version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-heroku-connector</artifactId>
-			<version>${org.springframework.cloud-version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-spring-service-connector</artifactId>
-			<version>${org.springframework.cloud-version}</version>
-		</dependency>
-
-		<!-- SAP HANA Cloud Platform -->
-		<dependency> 
-	       <groupId>com.sap.hana.cloud</groupId> 
-	       <artifactId>spring-cloud-sap-connector</artifactId> 
-		   <version>${com.sap.hana.cloud-version}</version> 
-		</dependency> 
-		<dependency> 
-	       <groupId>com.sap.hana.cloud</groupId> 
-	       <artifactId>spring-cloud-cloudfoundry-hana-service-connector</artifactId> 
-		   <version>${com.sap.hana.cloud-version}</version> 
-		</dependency> 
-
-		<!-- Apache Jakarta Commons -->
-		<dependency>
-			<groupId>commons-dbcp</groupId>
-			<artifactId>commons-dbcp</artifactId>
-			<version>1.4</version>
-		</dependency>
-
-		<!-- Derby -->
-		<dependency>
-			<groupId>org.apache.derby</groupId>
-			<artifactId>derbyclient</artifactId>
-			<version>10.9.1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.derby</groupId>
-			<artifactId>derby</artifactId>
-			<version>10.9.1.0</version>
-		</dependency>
-
-	</dependencies>
-
-
-	<build>
-		<plugins>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.5.1</version>
-				<configuration>
-					<source>${java-version}</source>
-					<target>${java-version}</target>
-					<showDeprecation>true</showDeprecation>
-					<showWarnings>true</showWarnings>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>2.2</version>
-				<configuration>
-					<warName>ROOT</warName>
-					<archive>
-						<addMavenDescriptor>false</addMavenDescriptor>
-					</archive>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>2.5</version>
-				<configuration>
-					<encoding>UTF-8</encoding>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
-
-	<repositories>
-		<repository>
-			<id>repository.springsource.milestone</id>
-			<name>SpringSource Release Repository</name>
-			<url>http://repo.springsource.org/release</url>
-		</repository>
-	</repositories>
-
-	<pluginRepositories>
-		<pluginRepository>
-			<id>repository.springsource.milestone</id>
-			<name>SpringSource Release Repository</name>
-			<url>http://repo.springsource.org/release</url>
-		</pluginRepository>
-	</pluginRepositories>
-	
-	<organization>
-        <name>SAP SE</name>
-        <url>http://www.sap.com</url>
-    </organization>
-    
-    <developers>
-        <developer>
-            <name>SAP HANA Cloud Platform</name>
-            <url>http://hcp.sap.com</url>
-            <organization>SAP SE</organization>
-            <organizationUrl>http://www.sap.com/</organizationUrl>
-        </developer>
-    </developers>
-    
+    <!-- ====================================================================== -->
+    <!-- L I C E N S E S -->
+    <!-- ====================================================================== -->
     <licenses>
         <license>
-            <name>The Apache Software License, Version 2.0</name>
+            <name>The Apache License, Version 2.0</name>
             <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
         </license>
     </licenses>
+
+    <!-- ====================================================================== -->
+    <!-- D E V E L O P E R S -->
+    <!-- ====================================================================== -->
+    <developers>
+        <developer>
+            <name>Ryan Baxter</name>
+            <email>rbaxter85@apache.org</email>
+            <organization>IBM</organization>
+            <organizationUrl>http://ibm.com</organizationUrl>
+        </developer>
+        <developer>
+            <name>Hans Uhlig</name>
+            <email>huhlig@gmail.com</email>
+            <organization>IBM</organization>
+            <organizationUrl>http://ibm.com</organizationUrl>
+        </developer>
+    </developers>
+
+    <!-- ====================================================================== -->
+    <!-- M O D U L E S -->
+    <!-- ====================================================================== -->
+    <modules>
+        <module>bluemix-cloud-connectors-core</module>
+        <module>bluemix-cloud-connectors-local</module>
+        <module>bluemix-cloud-connectors-cloudfoundry</module>
+    </modules>
+
+    <!-- ====================================================================== -->
+    <!-- CI  M A N A G E M E N T -->
+    <!-- ====================================================================== -->
+    <ciManagement>
+        <url>https://travis-ci.org/IBM-Bluemix/bluemix-cloud-connectors</url>
+    </ciManagement>
+
+    <!-- ====================================================================== -->
+    <!-- S C M -->
+    <!-- ====================================================================== -->
+    <scm>
+        <url>git@github.com:IBM-Bluemix/bluemix-cloud-connectors.git</url>
+        <connection>scm:git:git@github.com:IBM-Bluemix/bluemix-cloud-connectors.git</connection>
+        <developerConnection>scm:git:git@github.com:IBM-Bluemix/bluemix-cloud-connectors.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <!-- ====================================================================== -->
+    <!-- I S S U E    M A N A G E M E N T -->
+    <!-- ====================================================================== -->
+    <issueManagement>
+        <system>GitHub Issues</system>
+        <url>https://github.com/IBM-Bluemix/bluemix-cloud-connectors/issues</url>
+    </issueManagement>
+
+    <!-- ====================================================================== -->
+    <!-- D I S T R I B U T I O N  M A N A G E M E N T -->
+    <!-- ====================================================================== -->
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+    <!-- ====================================================================== -->
+    <!-- P R O P E R T I E S -->
+    <!-- ====================================================================== -->
+    <properties>
+        <spring.cloud.connectors.version>1.2.3.RELEASE</spring.cloud.connectors.version>
+        <watson.developer_cloud.version>3.5.3</watson.developer_cloud.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <!-- ====================================================================== -->
+    <!-- D E P E N D E N C I E S -->
+    <!-- ====================================================================== -->
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-core</artifactId>
+            <version>${spring.cloud.connectors.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+            <version>4.4.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.ektorp</groupId>
+            <artifactId>org.ektorp</artifactId>
+            <version>1.4.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.twilio.sdk</groupId>
+            <artifactId>twilio-java-sdk</artifactId>
+            <version>6.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.pacesys</groupId>
+            <artifactId>openstack4j</artifactId>
+            <version>3.0.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-clients</artifactId>
+            <version>0.10.1.0</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.ibm.watson.developer_cloud</groupId>
+            <artifactId>conversation</artifactId>
+            <version>${watson.developer_cloud.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ibm.watson.developer_cloud</groupId>
+            <artifactId>discovery</artifactId>
+            <version>${watson.developer_cloud.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ibm.watson.developer_cloud</groupId>
+            <artifactId>document-conversion</artifactId>
+            <version>${watson.developer_cloud.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ibm.watson.developer_cloud</groupId>
+            <artifactId>language-translator</artifactId>
+            <version>${watson.developer_cloud.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ibm.watson.developer_cloud</groupId>
+            <artifactId>natural-language-classifier</artifactId>
+            <version>${watson.developer_cloud.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ibm.watson.developer_cloud</groupId>
+            <artifactId>personality-insights</artifactId>
+            <version>${watson.developer_cloud.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ibm.watson.developer_cloud</groupId>
+            <artifactId>retrieve-and-rank</artifactId>
+            <version>${watson.developer_cloud.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ibm.watson.developer_cloud</groupId>
+            <artifactId>speech-to-text</artifactId>
+            <version>${watson.developer_cloud.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ibm.watson.developer_cloud</groupId>
+            <artifactId>text-to-speech</artifactId>
+            <version>${watson.developer_cloud.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ibm.watson.developer_cloud</groupId>
+            <artifactId>tone-analyzer</artifactId>
+            <version>${watson.developer_cloud.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ibm.watson.developer_cloud</groupId>
+            <artifactId>tradeoff-analytics</artifactId>
+            <version>${watson.developer_cloud.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongo-java-driver</artifactId>
+            <version>3.4.1</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.4.1212</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <!-- ====================================================================== -->
+    <!-- B U I L D -->
+    <!-- ====================================================================== -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.7</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.4.3</version>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- ====================================================================== -->
+    <!-- P R O F I L E S -->
+    <!-- ====================================================================== -->
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>3.0.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>2.10.4</version>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.6</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-release-plugin</artifactId>
+                        <version>2.5.3</version>
+                        <configuration>
+                            <autoVersionSubmodules>true</autoVersionSubmodules>
+                            <useReleaseProfile>false</useReleaseProfile>
+                            <releaseProfiles>release</releaseProfiles>
+                            <goals>deploy</goals>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
